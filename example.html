@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="Zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example</title>
+    <!--mathjax 請用 tex-svg 版本-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-svg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.2/tinymce.min.js"></script>
+</head>
+<body>
+    <textarea id="editor"></textarea>
+    <script>
+        let myUrl=new URL(location.href).pathname.replace(/\w+\.html$/, '');
+        tinymce.init({
+            selector: '#editor',
+
+            /*
+             * 讀取擴充套件的 plugin 跟 icon 相關定義
+             * （路徑依照實際狀況修改）
+             */
+            external_plugins: {
+                math: myUrl+'src/plugin.js'
+            },
+            icons_url: myUrl+'src/icon.js',
+
+            /*
+             * 使用 plugin 跟 icon
+             */
+            plugins: 'math',
+            icons: "math",
+            
+            /*
+             * 選單設定
+             */
+            menu: {
+                others: { title: '擴充', items: 'math' }
+            },
+            menubar: 'file others',
+
+            /*
+             * 工具列設定
+             */
+            toolbar: 'bold italic math'
+        });
+    </script>
+</body>
+</html>
